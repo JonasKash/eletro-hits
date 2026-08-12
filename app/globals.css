@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────── */
+/* Tema escuro/neon — estética eletrônica/DJ, condizente com o produto Hits 2010 */
+:root {
+  --bg:              #0A0812;
+  --surface:         #130F1E;
+  --surface-2:       #1B1630;
+  --border:          #2A2440;
+  --border-strong:   #3B3358;
+
+  /* Marca — violeta neon com acento ciano, tema "eletro" */
+  --brand:           #8B5CF6;
+  --brand-hover:     #7C3AED;
+  --brand-muted:     rgba(139, 92, 246, 0.16);
+  --accent:          #22D3EE;
+  --accent-muted:    rgba(34, 211, 238, 0.14);
+
+  --success:         #34D399;
+  --success-muted:   rgba(52, 211, 153, 0.14);
+
+  --text-1:          #F5F3FF;
+  --text-2:          #B7AFD1;
+  --text-3:          #7E7599;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 28px -8px rgba(139, 92, 246, 0.35);
+  --shadow-lg: 0 20px 50px -12px rgba(139, 92, 246, 0.4);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-pill: 999px;
+
+  --font: var(--font-display), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text-1);
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: var(--brand); color: #fff; }
+
+  * { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+  *::-webkit-scrollbar { width: 6px; height: 6px; }
+  *::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
