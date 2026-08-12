@@ -10,9 +10,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Hits 2010 | Pacote de Mixes com Transições dos Maiores Hits da Década",
+  title: "Hits 2010 | Mix Completo · 50 faixas em uma única sequência",
   description:
-    "Sequências prontas com transições entre os maiores hits dos anos 2010, organizadas por fase da década. Pagamento seguro via Pix, entrega imediata.",
+    "Mais de 2 horas de hits, 50 faixas encadeadas em uma única sequência. Playlist no Spotify, Deezer e SoundCloud, ou arquivos em .mp3. Pagamento seguro via Pix, entrega imediata.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
