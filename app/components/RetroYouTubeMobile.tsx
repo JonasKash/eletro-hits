@@ -66,6 +66,32 @@ const VIDEOS: Video[] = [
   },
 ];
 
+const FAQ = [
+  {
+    pergunta: "Como recebo a playlist?",
+    resposta:
+      "Você recebe em arquivos .mp3 pra baixar e ouvir offline, mais o link da playlist pronta nos principais apps (Spotify, Deezer, SoundCloud). Escolhe como preferir ouvir.",
+  },
+  {
+    pergunta: "Funciona no meu celular?",
+    resposta:
+      "Sim. Os arquivos .mp3 tocam em qualquer player comum e as playlists abrem direto no app que você já usa.",
+  },
+  {
+    pergunta: "Preciso de internet pra ouvir depois?",
+    resposta: "Não. Baixando o .mp3 você ouve offline quando quiser, sem gastar internet.",
+  },
+  {
+    pergunta: "Como funciona o pagamento?",
+    resposta:
+      "Pix, gerado direto aqui na página. Depois de pagar, o link de acesso chega no seu WhatsApp na hora.",
+  },
+  {
+    pergunta: "E se eu não gostar?",
+    resposta: "Tem 7 dias de garantia. Se não curtir, devolvemos 100% do valor, sem perguntas.",
+  },
+];
+
 function YouTubeLogo() {
   // eslint-disable-next-line @next/next/no-img-element
   return <img src="/youtube-logo.webp" alt="YouTube" style={{ height: 22, width: "auto" }} />;
@@ -189,18 +215,15 @@ export function RetroYouTubeMobile() {
           ))}
         </div>
 
-        <div style={{ padding: "8px 10px", borderBottom: "1px solid #ccc" }}>
-          <a href="#oferta" style={{ color: "#1a4fba", fontSize: 12 }}>
-            Next page »
-          </a>
-        </div>
-
-        {/* Nav decorativo */}
-        <div style={{ padding: "10px", display: "flex", flexDirection: "column", gap: 6, borderBottom: "1px solid #ccc" }}>
-          {["YouTube Home", "Browse Videos", "My Account", "Upload"].map((item) => (
-            <a key={item} href="#" style={{ color: "#1a4fba", fontSize: 12 }}>
-              {item}
-            </a>
+        {/* FAQ estilizado como os links de navegação da página antiga */}
+        <div style={{ borderBottom: "1px solid #ccc" }}>
+          {FAQ.map(({ pergunta, resposta }) => (
+            <details key={pergunta} style={{ borderTop: "1px solid #eee", padding: "8px 10px" }}>
+              <summary style={{ color: "#1a4fba", fontSize: 12, cursor: "pointer" }}>{pergunta}</summary>
+              <p style={{ marginTop: 6, marginBottom: 0, fontSize: 11, color: "#444", lineHeight: 1.5 }}>
+                {resposta}
+              </p>
+            </details>
           ))}
         </div>
 
