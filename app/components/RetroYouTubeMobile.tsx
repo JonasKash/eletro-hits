@@ -152,6 +152,17 @@ const VIDEOS: Video[] = [
     cor: "linear-gradient(135deg,#8B5CF6,#14B8A6)",
     previa: "/audio/previa-12.mp3",
   },
+  {
+    titulo: "R.I.O. - Shine On",
+    duracao: "3:45",
+    likes: 1142,
+    dislikes: 63,
+    canal: "Hits2010Mix",
+    visualizacoes: "97,530",
+    categoria: "Trance Anthems",
+    cor: "linear-gradient(135deg,#06B6D4,#6366F1)",
+    previa: "/audio/previa-13.mp3",
+  },
 ];
 
 const FAQ = [
