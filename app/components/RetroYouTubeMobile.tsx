@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { PauseIcon, PlayIcon } from "./Icons";
+import { PixInline } from "./PixInline";
 import { formatarPreco, PRECO } from "@/lib/produto";
 
 type Video = {
@@ -241,21 +242,7 @@ export function RetroYouTubeMobile() {
             Mais de 5 horas de música, entrega imediata por WhatsApp
           </p>
           <p style={{ fontSize: 22, fontWeight: 700, color: "#111", margin: "0 0 10px" }}>{formatarPreco(PRECO)}</p>
-          <a
-            href="/pedido"
-            style={{
-              display: "inline-block",
-              background: "#cc0000",
-              color: "#fff",
-              fontWeight: 700,
-              fontSize: 13,
-              padding: "10px 20px",
-              borderRadius: 3,
-              textDecoration: "none",
-            }}
-          >
-            Quero acessar a playlist
-          </a>
+          <PixInline />
         </div>
 
         {/* Rodapé estilo YouTube antigo */}
