@@ -10,9 +10,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Hits 2010 | Mix Completo · 50 faixas em uma única sequência",
+  title: "Hits 2010 | Mais de 5 horas de música em uma playlist só",
   description:
-    "Mais de 2 horas de hits, 50 faixas encadeadas em uma única sequência. Playlist no Spotify, Deezer e SoundCloud, ou arquivos em .mp3. Pagamento seguro via Pix, entrega imediata.",
+    "Acesso à playlist completa Hits 2010, mais de 5 horas de música. Pagamento seguro via Pix, entrega imediata por WhatsApp.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

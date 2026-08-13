@@ -2,44 +2,16 @@ export const PRODUTO = {
   slug: "hits-2010",
   nome: "Hits 2010",
   nomeCompleto: "Mix Hits 2010",
-  tagline: "50 faixas encadeadas em uma única sequência de mais de 2 horas",
+  tagline: "Mais de 5 horas de música em uma playlist só",
 };
 
-export const PRECO = 9.99;
+export const PRECO = 10;
 
 export const PREVIAS = [
   { arquivo: "/audio/previa-01.mp3", titulo: "Sequência 01", descricao: "Pop internacional e eletro-pop" },
   { arquivo: "/audio/previa-02.mp3", titulo: "Sequência 02", descricao: "EDM e sertanejo universitário" },
   { arquivo: "/audio/previa-03.mp3", titulo: "Sequência 03", descricao: "Pop urbano e funk nacional" },
   { arquivo: "/audio/previa-04.mp3", titulo: "Sequência 04", descricao: "Reggaeton e pop latino" },
-];
-
-export const ARTISTAS_DESTAQUE = [
-  "Alexandra Stan",
-  "Bob Sinclar",
-  "Calvin Harris",
-  "David Guetta",
-  "Pitbull",
-  "LMFAO",
-  "Eurythmics",
-  "Daft Punk",
-  "Swedish House Mafia",
-  "Corona",
-];
-
-export const PACOTE_ITENS = [
-  "Playlist pronta",
-  "Arquivos em .mp3",
-  "Acesso vitalício",
-  "Sem mensalidade",
-  "Entrega imediata por WhatsApp",
-];
-
-export const CANAIS_ENTREGA = [
-  { nome: "Spotify", descricao: "Playlist pronta para ouvir." },
-  { nome: "Deezer", descricao: "Playlist pronta para ouvir." },
-  { nome: "SoundCloud", descricao: "Playlist pronta para ouvir." },
-  { nome: "MP3", descricao: "Arquivos para baixar e ouvir offline." },
 ];
 
 export const TRACKLIST = [
