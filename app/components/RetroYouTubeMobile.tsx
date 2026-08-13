@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { PauseIcon, PlayIcon } from "./Icons";
 import { formatarPreco, PRECO } from "@/lib/produto";
 
@@ -14,6 +14,7 @@ type Video = {
   visualizacoes: string;
   categoria: string;
   cor: string;
+  previa: string;
 };
 
 const VIDEOS: Video[] = [
@@ -27,6 +28,7 @@ const VIDEOS: Video[] = [
     visualizacoes: "47,967",
     categoria: "Eletro Hits",
     cor: "linear-gradient(135deg,#8B5CF6,#22D3EE)",
+    previa: "/audio/previa-01.mp3",
   },
   {
     titulo: "Pitbull ft. Ne-Yo, Afrojack, Nayer - Give Me Everything",
@@ -37,6 +39,7 @@ const VIDEOS: Video[] = [
     visualizacoes: "13,003",
     categoria: "Dance Classics",
     cor: "linear-gradient(135deg,#F59E0B,#EF4444)",
+    previa: "/audio/previa-02.mp3",
   },
   {
     titulo: "David Guetta feat. Kid Cudi - Memories",
@@ -47,6 +50,7 @@ const VIDEOS: Video[] = [
     visualizacoes: "789,140",
     categoria: "Festival Anthems",
     cor: "linear-gradient(135deg,#3B82F6,#8B5CF6)",
+    previa: "/audio/previa-03.mp3",
   },
   {
     titulo: "LMFAO ft. Lauren Bennett, GoonRock - Party Rock Anthem",
@@ -57,33 +61,58 @@ const VIDEOS: Video[] = [
     visualizacoes: "333,117",
     categoria: "Party Mix",
     cor: "linear-gradient(135deg,#EC4899,#F59E0B)",
+    previa: "/audio/previa-04.mp3",
   },
 ];
 
+function YouTubeLogo() {
+  return (
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "baseline",
+        fontFamily: "Georgia, 'Times New Roman', serif",
+        fontSize: 20,
+        fontWeight: 700,
+      }}
+    >
+      <span style={{ color: "#282828" }}>You</span>
+      <span
+        style={{
+          background: "#cc0000",
+          color: "#fff",
+          borderRadius: 3,
+          padding: "0 4px",
+          marginLeft: 1,
+        }}
+      >
+        Tube
+      </span>
+      <sup style={{ fontSize: 9, color: "#282828" }}>™</sup>
+    </span>
+  );
+}
+
 export function RetroYouTubeMobile() {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [tocando, setTocando] = useState(false);
-  const [precisaTocarManual, setPrecisaTocarManual] = useState(false);
+  const [tocando, setTocando] = useState<number | null>(null);
+  const refs = useRef<Array<HTMLAudioElement | null>>([]);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
-    audio
-      .play()
-      .then(() => setTocando(true))
-      .catch(() => setPrecisaTocarManual(true));
-  }, []);
+  function alternar(i: number) {
+    const atual = refs.current[i];
+    if (!atual) return;
 
-  function alternarPlay() {
-    const audio = audioRef.current;
-    if (!audio) return;
-    if (tocando) {
-      audio.pause();
-      setTocando(false);
-    } else {
-      audio.play().then(() => setTocando(true));
-      setPrecisaTocarManual(false);
+    if (tocando === i) {
+      atual.pause();
+      setTocando(null);
+      return;
     }
+
+    if (tocando !== null && refs.current[tocando]) {
+      refs.current[tocando]!.pause();
+    }
+
+    atual.play();
+    setTocando(i);
   }
 
   return (
@@ -101,40 +130,10 @@ export function RetroYouTubeMobile() {
       >
         {/* Barra superior estilo YouTube Mobile 2011 */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "8px 10px", borderBottom: "1px solid #ccc" }}>
-          <span style={{ color: "#cc0000", fontSize: 20, fontWeight: 700, fontFamily: "Georgia, 'Times New Roman', serif" }}>
-            You<span style={{ color: "#333" }}>Tube</span>
-            <sup style={{ fontSize: 9 }}>™</sup>
-          </span>
+          <YouTubeLogo />
           <a href="#" style={{ color: "#1a4fba", fontSize: 11 }}>
             Sign In
           </a>
-        </div>
-
-        {/* Now playing */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8, padding: "6px 10px", borderBottom: "1px solid #ccc", background: "#f5f5f5" }}>
-          <button
-            onClick={alternarPlay}
-            aria-label={tocando ? "Pausar" : "Tocar"}
-            style={{
-              width: 22,
-              height: 22,
-              flexShrink: 0,
-              borderRadius: 999,
-              border: "1px solid #999",
-              background: "#fff",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              color: "#cc0000",
-            }}
-          >
-            {tocando ? <PauseIcon className="h-2.5 w-2.5" /> : <PlayIcon className="h-2.5 w-2.5" />}
-          </button>
-          <span style={{ fontSize: 10, color: "#555" }}>
-            {precisaTocarManual ? "Toque para tocar uma amostra do mix" : "Tocando agora: amostra do mix"}
-          </span>
-          <audio ref={audioRef} src="/audio/previa-01.mp3" loop preload="auto" />
         </div>
 
         {/* Busca (decorativa) */}
@@ -155,24 +154,37 @@ export function RetroYouTubeMobile() {
           </button>
         </form>
 
+        <p style={{ padding: "6px 10px", fontSize: 10, color: "#777", margin: 0, borderBottom: "1px solid #ccc" }}>
+          Toque na capa de qualquer faixa para ouvir uma prévia do mix.
+        </p>
+
         {/* Lista de faixas, estilo lista de vídeos */}
         <div>
           {VIDEOS.map((v, i) => (
             <div key={v.titulo} style={{ display: "flex", gap: 8, padding: "10px", borderBottom: "1px solid #ccc" }}>
-              <div
+              <button
+                onClick={() => alternar(i)}
+                aria-label={tocando === i ? `Pausar prévia de ${v.titulo}` : `Tocar prévia de ${v.titulo}`}
                 style={{
                   width: 64,
                   height: 48,
                   flexShrink: 0,
                   background: v.cor,
                   borderRadius: 2,
+                  border: "none",
+                  padding: 0,
+                  cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                 }}
               >
-                <PlayIcon className="h-4 w-4 text-white" />
-              </div>
+                {tocando === i ? (
+                  <PauseIcon className="h-4 w-4 text-white" />
+                ) : (
+                  <PlayIcon className="h-4 w-4 text-white" />
+                )}
+              </button>
               <div style={{ minWidth: 0 }}>
                 <a href="#" style={{ color: "#1a4fba", fontWeight: 700, fontSize: 12, lineHeight: 1.3 }}>
                   {v.titulo}
@@ -187,6 +199,14 @@ export function RetroYouTubeMobile() {
                 <div style={{ color: "#333", fontSize: 11 }}>{v.visualizacoes} views</div>
                 <div style={{ color: "#777", fontSize: 10, marginTop: 2 }}>In {v.categoria}</div>
               </div>
+              <audio
+                ref={(el) => {
+                  refs.current[i] = el;
+                }}
+                src={v.previa}
+                preload="none"
+                onEnded={() => setTocando(null)}
+              />
             </div>
           ))}
         </div>
