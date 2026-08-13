@@ -17,6 +17,12 @@ type Dados = {
 
 const EMPTY_DADOS: Dados = { nome: "", telefone: "" };
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 export default function CheckoutForm() {
   const [step, setStep] = useState<Step>("dados");
   const [dados, setDados] = useState<Dados>(EMPTY_DADOS);
@@ -38,7 +44,14 @@ export default function CheckoutForm() {
     if (step !== "pagamento" || pix) return;
     setPixLoading(true);
     generatePixOrder()
-      .then(setPix)
+      .then((resultado) => {
+        setPix(resultado);
+        window.fbq?.("track", "InitiateCheckout", {
+          value: resultado.amount,
+          currency: "BRL",
+          content_name: PRODUTO.nomeCompleto,
+        });
+      })
       .finally(() => setPixLoading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);

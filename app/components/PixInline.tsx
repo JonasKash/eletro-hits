@@ -7,6 +7,12 @@ import { maskPhone } from "@/lib/masks";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { PRODUTO } from "@/lib/produto";
 
+declare global {
+  interface Window {
+    fbq?: (...args: unknown[]) => void;
+  }
+}
+
 export function PixInline() {
   const [nome, setNome] = useState("");
   const [telefone, setTelefone] = useState("");
@@ -28,6 +34,12 @@ export function PixInline() {
     const resultado = await generatePixOrder();
     setPix(resultado);
     setCarregando(false);
+
+    window.fbq?.("track", "InitiateCheckout", {
+      value: resultado.amount,
+      currency: "BRL",
+      content_name: PRODUTO.nomeCompleto,
+    });
   }
 
   const mensagemWhatsApp = useMemo(() => {
