@@ -67,31 +67,8 @@ const VIDEOS: Video[] = [
 ];
 
 function YouTubeLogo() {
-  return (
-    <span
-      style={{
-        display: "inline-flex",
-        alignItems: "baseline",
-        fontFamily: "Georgia, 'Times New Roman', serif",
-        fontSize: 20,
-        fontWeight: 700,
-      }}
-    >
-      <span style={{ color: "#282828" }}>You</span>
-      <span
-        style={{
-          background: "#cc0000",
-          color: "#fff",
-          borderRadius: 3,
-          padding: "0 4px",
-          marginLeft: 1,
-        }}
-      >
-        Tube
-      </span>
-      <sup style={{ fontSize: 9, color: "#282828" }}>™</sup>
-    </span>
-  );
+  // eslint-disable-next-line @next/next/no-img-element
+  return <img src="/youtube-logo.webp" alt="YouTube" style={{ height: 22, width: "auto" }} />;
 }
 
 export function RetroYouTubeMobile() {
