@@ -28,9 +28,6 @@ export const ARTISTAS_DESTAQUE = [
 ];
 
 export const PACOTE_ITENS = [
-  "50 faixas encadeadas",
-  "Mais de 2 horas de sequência",
-  "Transições já prontas",
   "Playlist pronta",
   "Arquivos em .mp3",
   "Acesso vitalício",
